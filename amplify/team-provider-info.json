@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sigoweb-dev-200834-authRole",
+      "UnauthRoleArn": "arn:aws:iam::630947548599:role/amplify-sigoweb-dev-200834-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::630947548599:role/amplify-sigoweb-dev-200834-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-sigoweb-dev-200834-deployment",
+      "UnauthRoleName": "amplify-sigoweb-dev-200834-unauthRole",
+      "StackName": "amplify-sigoweb-dev-200834",
+      "StackId": "arn:aws:cloudformation:us-east-1:630947548599:stack/amplify-sigoweb-dev-200834/3e62d6e0-f228-11ea-a562-124c09213289",
+      "AmplifyAppId": "dtukmdt1gxt21"
+    },
+    "categories": {
+      "auth": {
+        "sigoweb": {}
+      }
+    }
+  }
+}
