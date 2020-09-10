@@ -18,6 +18,7 @@ import NotificationAlert from "react-notification-alert";
 import { SignInSocialButtons } from "../SocialButtons/SignInSocialButtons";
 import { withTranslation } from "react-i18next";
 import Log from "../../../utils/Logger/Log";
+import logo from '../../../assets/img/brand/logo.png'
 
 class DefaultSignIn extends SignIn {
   constructor(props) {
@@ -79,10 +80,13 @@ class DefaultSignIn extends SignIn {
         />
         <Container>
           <Row className="justify-content-center">
-            <Col md="8">
+            <Col md="5">
               <CardGroup>
-                <Card className="p-4">
+                <Card className="p-2">
                   <CardBody>
+                    <div className="text-center mb-5">
+                      <img src={logo} />
+                    </div>
                     <Form>
                       <h1>{t("common:Login")}</h1>
                       <p className="text-muted">
@@ -146,23 +150,7 @@ class DefaultSignIn extends SignIn {
                       authState={authState}
                     />
                   </CardBody>
-                </Card>
-                <Card className="text-white bg-primary py-5">
-                  <CardBody className="text-center">
-                    <div>
-                      <h2>{t("Sign Up")}</h2>
-                      <p>{t("Sign Up Text")}</p>
-                      <Button
-                        color="primary"
-                        className="mt-3"
-                        active
-                        onClick={() => this.changeState("signUp")}
-                      >
-                        {t("Register!")}
-                      </Button>
-                    </div>
-                  </CardBody>
-                </Card>
+                </Card>                
               </CardGroup>
             </Col>
           </Row>

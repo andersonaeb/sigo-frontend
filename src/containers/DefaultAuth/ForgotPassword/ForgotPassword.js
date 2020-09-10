@@ -120,7 +120,7 @@ class DefaultForgotPassword  extends ForgotPassword  {
         <NotificationAlert ref="notify" />
         <Container>
           <Row className="justify-content-center">
-            <Col md="8">
+            <Col md="5">
               <CardGroup>
                 <Card className="p-4">
                   <CardBody>
@@ -143,16 +143,7 @@ class DefaultForgotPassword  extends ForgotPassword  {
                       </Row>
                     </Form>
                   </CardBody>
-                </Card>
-                <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: 44 + '%' }}>
-                  <CardBody className="text-center">
-                    <div>
-                      <h2>{ t('Forgot Password') }</h2>
-                      <p>{ t('Forgot Password Text') }</p>
-                      <Button color="primary" className="mt-3" active onClick={() => this.changeState('signUp')}>{ t('Register Now!') }</Button>
-                    </div>
-                  </CardBody>
-                </Card>
+                </Card>                
               </CardGroup>
             </Col>
           </Row>

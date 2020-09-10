@@ -31,7 +31,7 @@ i18n
   .init({
     // lng: "en",
     detection: detectionOptions,
-    fallbackLng: "en", // use en if detected lng is not available
+    fallbackLng: "pt_BR", // use en if detected lng is not available
 
     ns: ["validation", "common", "glossary"],
 
