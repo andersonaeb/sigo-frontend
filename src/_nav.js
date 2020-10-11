@@ -3,11 +3,7 @@ export default {
     {
       name: 'Dashboard',
       url: '/dashboard',
-      icon: 'icon-speedometer',
-      badge: {
-        variant: 'info',
-        text: 'NEW',
-      },
+      icon: 'icon-speedometer'
     },
     {
       title: true,
@@ -19,8 +15,8 @@ export default {
       class: ''             // optional class names space delimited list for title item ex: "text-center"
     },
     {
-      name: 'Colors',
-      url: '/theme/colors',
+      name: 'Normas técnicas',
+      url: '/standards',
       icon: 'icon-drop',
     },
     {
@@ -273,21 +269,6 @@ export default {
       url: '/dashboard',
       icon: 'icon-ban',
       attributes: { disabled: true },
-    },
-    {
-      name: 'Download CoreUI',
-      url: 'https://coreui.io/react/',
-      icon: 'icon-cloud-download',
-      class: 'mt-auto',
-      variant: 'success',
-      attributes: { target: '_blank', rel: "noopener" },
-    },
-    {
-      name: 'Try CoreUI PRO',
-      url: 'https://coreui.io/pro/react/',
-      icon: 'icon-layers',
-      variant: 'danger',
-      attributes: { target: '_blank', rel: "noopener" },
-    },
+    }
   ],
 };

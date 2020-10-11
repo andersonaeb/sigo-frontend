@@ -85,10 +85,9 @@ class DefaultSignIn extends SignIn {
                 <Card className="p-2">
                   <CardBody>
                     <div className="text-center mb-5">
-                      <img src={logo} />
+                      <img src={logo} class="img-fluid" />
                     </div>
                     <Form>
-                      <h1>{t("common:Login")}</h1>
                       <p className="text-muted">
                         {t("Sign In to your account")}
                       </p>
