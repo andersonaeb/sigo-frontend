@@ -1,0 +1,122 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sigoweb-test-193052-authRole",
+      "UnauthRoleArn": "arn:aws:iam::630947548599:role/amplify-sigoweb-test-193052-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::630947548599:role/amplify-sigoweb-test-193052-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-sigoweb-test-193052-deployment",
+      "UnauthRoleName": "amplify-sigoweb-test-193052-unauthRole",
+      "StackName": "amplify-sigoweb-test-193052",
+      "StackId": "arn:aws:cloudformation:us-east-1:630947548599:stack/amplify-sigoweb-test-193052/6de566a0-0c11-11eb-8579-0a99e59b1983",
+      "AmplifyAppId": "d1pjc7a51icetm"
+    }
+  },
+  "auth": {
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "sigoweb",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID"
+          ]
+        }
+      ],
+      "output": {},
+      "lastPushTimeStamp": "2020-10-11T23:11:45.761Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-sigoweb-test-193052-deployment/amplify-cfn-templates/auth/template.json",
+        "logicalId": "authuserPoolGroups"
+      },
+      "lastPushDirHash": "eY70ghiCShaGTiDmPf52R8IOspg="
+    },
+    "sigoweb": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "output": {
+        "AppClientSecret": "1c87ji6vu4rht1huoikejrgp25bs9d5m7c3palo8d2f3v75n0sbv",
+        "UserPoolId": "us-east-1_h8hBfqvFD",
+        "AppClientIDWeb": "6keh7j52vrs7253f40995deosu",
+        "AppClientID": "3k8vn07fjuo88qupp1q4ss92oh",
+        "UserPoolName": "sigoweb_userpool"
+      },
+      "lastPushTimeStamp": "2020-10-11T23:11:45.764Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-sigoweb-test-193052-deployment/amplify-cfn-templates/auth/sigoweb-cloudformation-template.yml",
+        "logicalId": "authsigoweb"
+      },
+      "lastPushDirHash": "eJQNV8KQRoe9312kx3WEQGlEF/w="
+    }
+  },
+  "function": {
+    "AdminQueries0e3568a5": {
+      "service": "Lambda",
+      "providerPlugin": "awscloudformation",
+      "build": true,
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "sigoweb",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
+      "output": {
+        "Region": "us-east-1",
+        "Arn": "arn:aws:lambda:us-east-1:630947548599:function:AdminQueries0e3568a5-test",
+        "Name": "AdminQueries0e3568a5-test",
+        "LambdaExecutionRole": "AdminQueries0e3568a5LambdaRole-test"
+      },
+      "lastPushTimeStamp": "2020-10-11T23:11:45.765Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-sigoweb-test-193052-deployment/amplify-cfn-templates/function/AdminQueries0e3568a5-cloudformation-template.json",
+        "logicalId": "functionAdminQueries0e3568a5"
+      },
+      "lastBuildTimeStamp": "2020-10-11T23:06:54.634Z",
+      "lastPackageTimeStamp": "2020-10-11T23:06:58.464Z",
+      "distZipFilename": "AdminQueries0e3568a5-7379536d694845587831-build.zip",
+      "lastPushDirHash": "boqEXXOOkHVwvMFqd4xZOa84x8U="
+    }
+  },
+  "api": {
+    "AdminQueries": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "sigoweb",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "AdminQueries0e3568a5",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
+      "output": {
+        "ApiName": "AdminQueries",
+        "RootUrl": "https://34ksl0e53g.execute-api.us-east-1.amazonaws.com/test"
+      },
+      "lastPushTimeStamp": "2020-10-11T23:11:45.766Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-sigoweb-test-193052-deployment/amplify-cfn-templates/api/admin-queries-cloudformation-template.json",
+        "logicalId": "apiAdminQueries"
+      },
+      "lastPushDirHash": "Y64st0YivRMJuoDPA/FFOOm6A6s="
+    }
+  }
+}

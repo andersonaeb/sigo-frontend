@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { RequireNewPassword  } from 'aws-amplify-react';
 import NotificationAlert from 'react-notification-alert';
-import { withTranslation } from 'react-i18next';
 import Log from '../../../utils/Logger/Log';
 
 class DefaultRequireNewPassword   extends RequireNewPassword   {
@@ -106,4 +105,4 @@ class DefaultRequireNewPassword   extends RequireNewPassword   {
   }
 }
 
-export default withTranslation('auth') (DefaultRequireNewPassword);
+export default DefaultRequireNewPassword;

@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { ForgotPassword  } from 'aws-amplify-react';
 import NotificationAlert from 'react-notification-alert';
-import { withTranslation } from 'react-i18next';
 import Log from '../../../utils/Logger/Log';
 
 class DefaultForgotPassword  extends ForgotPassword  {
@@ -153,4 +152,4 @@ class DefaultForgotPassword  extends ForgotPassword  {
   }
 }
 
-export default withTranslation('auth') (DefaultForgotPassword);
+export default DefaultForgotPassword;

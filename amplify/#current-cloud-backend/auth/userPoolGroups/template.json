@@ -1,0 +1,68 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Parameters": {
+        "authsigowebUserPoolId": {
+            "Type": "String",
+            "Default": "authsigowebUserPoolId"
+        },
+        
+        "authsigowebAppClientID": {
+            "Type": "String",
+            "Default": "authsigowebAppClientID"
+        },
+        "authsigowebAppClientIDWeb": {
+            "Type": "String",
+            "Default": "authsigowebAppClientIDWeb"
+        },
+        "AuthRoleArn": {
+            "Type": "String"
+        },
+        "UnauthRoleArn": {
+            "Type": "String"
+        },
+        "env": {
+            "Type": "String"
+        }
+    },
+    "Conditions": {
+        "ShouldNotCreateEnvResources": {
+            "Fn::Equals": [
+                {
+                    "Ref": "env"
+                },
+                "NONE"
+            ]
+        }
+    },
+    "Resources": {
+    
+        "adminGroup": {
+          "Type" : "AWS::Cognito::UserPoolGroup",
+          "Properties" : {
+              "GroupName" : "admin",
+              "Precedence" : 1,
+              
+              "UserPoolId" : {
+                "Ref": "authsigowebUserPoolId"
+              } 
+            }
+        },
+        
+    
+        "partnerGroup": {
+          "Type" : "AWS::Cognito::UserPoolGroup",
+          "Properties" : {
+              "GroupName" : "partner",
+              "Precedence" : 2,
+              
+              "UserPoolId" : {
+                "Ref": "authsigowebUserPoolId"
+              } 
+            }
+        },
+        
+    
+    
+    },
+    
+}

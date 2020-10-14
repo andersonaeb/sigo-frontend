@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { ConfirmSignIn  } from 'aws-amplify-react';
 import NotificationAlert from 'react-notification-alert';
-import { withTranslation } from 'react-i18next';
 import Log from '../../../utils/Logger/Log';
 
 class DefaultConfirmSignIn  extends ConfirmSignIn  {
@@ -94,4 +93,4 @@ class DefaultConfirmSignIn  extends ConfirmSignIn  {
   }
 }
 
-export default withTranslation('auth') (DefaultConfirmSignIn);
+export default DefaultConfirmSignIn;

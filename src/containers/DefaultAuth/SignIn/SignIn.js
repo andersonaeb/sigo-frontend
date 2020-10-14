@@ -1,24 +1,25 @@
 import React from "react";
+
 import {
-  Button,
-  Card,
-  CardBody,
-  CardGroup,
-  Col,
-  Container,
-  Form,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Row
-} from "reactstrap";
+  CButton,
+  CCard,
+  CCardBody,
+  CCardGroup,
+  CCol,
+  CContainer,
+  CForm,
+  CInput,
+  CInputGroup,
+  CInputGroupPrepend,
+  CInputGroupText,
+  CRow
+} from '@coreui/react'
+import CIcon from '@coreui/icons-react'
+
 import { SignIn } from "aws-amplify-react";
 import NotificationAlert from "react-notification-alert";
-import { SignInSocialButtons } from "../SocialButtons/SignInSocialButtons";
-import { withTranslation } from "react-i18next";
 import Log from "../../../utils/Logger/Log";
-import logo from '../../../assets/img/brand/logo.png'
+import logo from '../../../assets/img/brand/logo_black.png'
 
 class DefaultSignIn extends SignIn {
   constructor(props) {
@@ -31,14 +32,13 @@ class DefaultSignIn extends SignIn {
     this.changeState = this.changeState.bind(this);
   }
 
-  error(err) {
-    const { t } = this.props;
+  error(err) {    
     Log.error(err, "DefaultAuth.SignIn");
     const options = {
       place: "tl",
       message: (
         <div>
-          <div>{err.message ? t(err.message) : t(err)}</div>
+          <div>{err.message ? "Usuário e/ou senha inválidos" : err}</div>
         </div>
       ),
       type: "danger",
@@ -50,9 +50,9 @@ class DefaultSignIn extends SignIn {
 
   async onSignIn() {
     if (!this.inputs.username) {
-      this.error("Username cannot be empty");
+      this.error("O E-mail não deve ser vazio");
     } else if (!this.inputs.password) {
-      this.error("Password cannot be empty");
+      this.error("A senha não deve ser vazias");
     } else {
       this.setState({ isLoggingIn: true });
       await this.signIn();
@@ -60,9 +60,8 @@ class DefaultSignIn extends SignIn {
     }
   }
 
-  render() {
-    const { t } = this.props;
-    const { authState, federated, onStateChange } = this.props;
+  render() {    
+    const { authState } = this.props;
     if (
       authState !== "signIn" &&
       authState !== "signedUp" &&
@@ -72,92 +71,56 @@ class DefaultSignIn extends SignIn {
     }
 
     return (
-      <div className="app flex-row align-items-center">
+      <div className="c-app c-default-layout flex-row align-items-center">
         <NotificationAlert
           ref={c => {
             this.notify = c;
           }}
         />
-        <Container>
-          <Row className="justify-content-center">
-            <Col md="5">
-              <CardGroup>
-                <Card className="p-2">
-                  <CardBody>
+        <CContainer>
+          <CRow className="justify-content-center row">
+            <CCol md="8">
+              <CCardGroup>
+                <CCard className="p-4">
+                  <CCardBody>
                     <div className="text-center mb-5">
-                      <img src={logo} class="img-fluid" />
+                      <img src={logo} height="60" alt="Sigo"/>
                     </div>
-                    <Form>
-                      <p className="text-muted">
-                        {t("Sign In to your account")}
-                      </p>
-                      <InputGroup className="mb-3">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="icon-user"></i>
-                          </InputGroupText>
-                        </InputGroupAddon>
-                        <Input
-                          autoFocus
-                          placeholder={t("common:Email")}
-                          key="username"
-                          name="username"
-                          onChange={this.handleInputChange}
-                        />
-                      </InputGroup>
-                      <InputGroup className="mb-4">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="icon-lock"></i>
-                          </InputGroupText>
-                        </InputGroupAddon>
-                        <Input
-                          placeholder={t("common:Password")}
-                          key="password"
-                          type="password"
-                          name="password"
-                          onChange={this.handleInputChange}
-                        />
-                      </InputGroup>
-                      <Row>
-                        <Col xs="6">
-                          <Button
-                            color="link"
-                            className="px-0"
-                            onClick={() => this.changeState("forgotPassword")}
-                          >
-                            {t("Forgot password?")}
-                          </Button>
-                        </Col>
-                        <Col xs="6" className="text-right">
-                          <Button
-                            color="primary"
-                            className="px-4"
-                            onClick={this.onSignIn}
-                          >
-                            {t("common:Login")}{" "}
-                            {this.state.isLoggingIn ? (
-                              <i className="fa fa-spin fa-circle-o-notch" />
-                            ) : null}
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Form>
-                    <SignInSocialButtons
-                      onStateChange={onStateChange}
-                      federated={federated}
-                      authState={authState}
-                    />
-                  </CardBody>
-                </Card>                
-              </CardGroup>
-            </Col>
-          </Row>
-        </Container>
+                    <CForm>
+                      <h1>Login</h1>
+                      <p className="text-muted">Acesse sua conta</p>
+                      <CInputGroup className="mb-3">
+                        <CInputGroupPrepend>
+                          <CInputGroupText>
+                            <CIcon name="cil-user" />
+                          </CInputGroupText>
+                        </CInputGroupPrepend>
+                        <CInput type="text" key="username" name="username" onChange={this.handleInputChange} placeholder="E-mail" autoComplete="E-mail" />
+                      </CInputGroup>
+                      <CInputGroup className="mb-4">
+                        <CInputGroupPrepend>
+                          <CInputGroupText>
+                            <CIcon name="cil-lock-locked" />
+                          </CInputGroupText>
+                        </CInputGroupPrepend>
+                        <CInput type="password" key="password" name="password" onChange={this.handleInputChange} placeholder="Password" autoComplete="current-password" />
+                      </CInputGroup>
+                      <div className="text-right">
+                          <CButton color="primary" className="px-4" onClick={this.onSignIn}>
+                            {"Entrar"}{" "}{this.state.isLoggingIn ? (<i className="fa fa-spin fa-circle-o-notch" />) : null}
+                          </CButton>
+                      </div>
+                    </CForm>
+                  </CCardBody>
+                </CCard>
+              </CCardGroup>
+            </CCol>
+          </CRow>
+        </CContainer>
       </div>
     );
   }
 }
 
 // export default DefaultSignIn;
-export default withTranslation("auth", { wait: true })(DefaultSignIn);
+export default DefaultSignIn;
