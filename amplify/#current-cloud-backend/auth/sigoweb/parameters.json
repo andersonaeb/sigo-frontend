@@ -40,7 +40,8 @@
     "hostedUI": false,
     "userPoolGroupList": [
         "admin",
-        "partner"
+        "partner",
+        "manager"
     ],
     "adminQueryGroup": "admin",
     "authRoleArn": {

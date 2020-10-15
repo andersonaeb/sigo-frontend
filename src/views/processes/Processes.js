@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
 import axios from "axios";
 
 import {  
@@ -14,8 +13,6 @@ import {
 
 const Processes = () => {
   
-  const history = useHistory()
-
   let [processes, setProcesses] = useState([]);
   let currentPage = 1;
 

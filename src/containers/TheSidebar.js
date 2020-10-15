@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Auth, nav } from 'aws-amplify';
 import { useSelector, useDispatch } from 'react-redux'
 import {
   CCreateElement,
@@ -13,13 +14,30 @@ import {
 } from '@coreui/react'
 
 // sidebar nav config
-import navigation from './_nav'
+import { AdminNav, PartnerNav, ManagerNav } from './_nav'
 
 import logo from '../assets/img/brand/logo.png'
 
 const TheSidebar = () => {
+  
+  let [navigator, setNavigator] = useState([]);
   const dispatch = useDispatch()
-  const show = useSelector(state => state.sidebarShow)
+  const show = useSelector(state => state.sidebarShow);
+
+  Auth.currentAuthenticatedUser().then(user => {
+    switch(user.signInUserSession.accessToken.payload['cognito:groups'][0]) {
+      case 'admin':
+        setNavigator(AdminNav);
+        break;
+      case 'partner':
+        setNavigator(PartnerNav);
+        break;
+      case 'manager':
+        setNavigator(ManagerNav);
+        break;
+      default:
+    }
+  });
 
   return (
     <CSidebar
@@ -32,7 +50,7 @@ const TheSidebar = () => {
       <CSidebarNav>
 
         <CCreateElement
-          items={navigation}
+          items={navigator}
           components={{
             CSidebarNavDivider,
             CSidebarNavDropdown,

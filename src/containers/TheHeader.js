@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Auth } from 'aws-amplify';
 import {
   CHeader,
   CToggler,
@@ -8,10 +9,6 @@ import {
   CHeaderNavItem,
   CHeaderNavLink
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-
-// routes config
-import routes from '../routes'
 
 import logo from '../assets/img/brand/logo_black.png'
 
@@ -20,6 +17,9 @@ import {
 }  from './index'
 
 const TheHeader = () => {
+  
+  let [group, setGroup] = useState([]);
+
   const dispatch = useDispatch()
   const sidebarShow = useSelector(state => state.sidebarShow)
 
@@ -32,6 +32,18 @@ const TheHeader = () => {
     const val = [false, 'responsive'].includes(sidebarShow) ? true : 'responsive'
     dispatch({type: 'set', sidebarShow: val})
   }
+
+  const getGroupName = (group) => {
+    if(group == 'manager') {
+      return 'Gestor';
+    } else if(group == 'partner') {
+      return 'Consultor';
+    } else {
+      return group;
+    }
+  }
+
+  Auth.currentAuthenticatedUser().then(user => setGroup(user.signInUserSession.accessToken.payload['cognito:groups'][0]));
 
   return (
     <CHeader>
@@ -54,8 +66,10 @@ const TheHeader = () => {
           <CHeaderNavLink to="/dashboard">Dashboard</CHeaderNavLink>
         </CHeaderNavItem>        
       </CHeaderNav>
-
-      <CHeaderNav className="px-3">        
+      <CHeaderNav className="px-3">     
+        <div className="mark group-name">
+            {getGroupName(group)}
+        </div>   
         <TheHeaderDropdown/>
       </CHeaderNav>
 
