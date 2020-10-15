@@ -28,7 +28,7 @@ const RequirementDetail = ({match}) => {
   const remove = () => {
     excluding = true;
     axios
-      .delete("http://localhost:8080/v1/requirements/" + match.params.id)
+      .delete(process.env.REACT_APP_PARTNER_HOST + "/v1/requirements/" + match.params.id)
       .then((res) => {
         setModal(!modal);
         history.push('/requirements')
@@ -67,7 +67,7 @@ const RequirementDetail = ({match}) => {
 
   useEffect(() => {    
     axios
-      .get("http://localhost:8080/v1/requirements/" + match.params.id)
+      .get(process.env.REACT_APP_PARTNER_HOST + "/v1/requirements/" + match.params.id)
       .then((res) => {
         setRequirement(res.data);
       })

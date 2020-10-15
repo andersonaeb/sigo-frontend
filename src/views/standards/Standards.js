@@ -12,19 +12,19 @@ import {
   CButton
 } from '@coreui/react'
 
-const Partners = () => {
+const Standards = () => {
   
   const history = useHistory()
 
-  let [partners, setPartners] = useState([]);
+  let [standards, setStandards] = useState([]);
   let currentPage = 1;
 
   useEffect(() => {    
-    const url = "http://localhost:8080/v1/partners";
+    const url = process.env.REACT_APP_STANDARD_HOST + "/v1/standards";
     axios
       .get(url)
       .then((res) => {
-        setPartners(res.data.content);
+        setStandards(res.data.content);
       })
       .catch((error) => {
         console.error("Error", error);
@@ -36,31 +36,31 @@ const Partners = () => {
       <CCol xl={12}>
         <CCard>
           <CCardHeader>
-            <h4 id="process" className="card-title mb-0">Consultorias e Assessorias</h4>
+            <h4 id="process" className="card-title mb-0">Normas Técnicas</h4>
             <CButton                  
                   color="primary"
                   size="sm"
                   className="mt-2"
-                  onClick={() => {history.push('/partners/insert')}}
-                >Inserir nova empresa
+                  onClick={() => {history.push('/standards/insert')}}
+                >Inserir nova norma
                 </CButton>
           </CCardHeader>
           <CCardBody>
           <CDataTable
-            items={partners}
+            items={standards}
             fields={[
               { key: 'id', _classes: 'font-weight-bold' },
-              { key: 'companyName', label: 'Empresa' },
-              { key: 'cnpj', label: 'CNPJ' },
-              { key: 'state', label: 'Estado' }
+              { key: 'title', label: 'Título' },
+              { key: 'code', label: 'Código' },
+              { key: 'keywords', label: 'keywords' }
             ]}            
             tableFilter={{label: "Filtrar", placeholder: "digite um valor"}}
             hover
-            noItemsViewSlot={<div className='text-center'>Nenhuma empresa cadastrada</div>}
+            noItemsViewSlot={<div className='text-center'>Nenhuma norma técnica cadastrada</div>}
             sorter                        
             activePage={currentPage}
             clickableRows
-            onRowClick={(item) => history.push(`/partners/view/${item.id}`)}
+            onRowClick={(item) => history.push(`/standards/view/${item.id}`)}
           
           />
           </CCardBody>
@@ -70,4 +70,4 @@ const Partners = () => {
   )
 }
 
-export default Partners
+export default Standards

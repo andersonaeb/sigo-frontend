@@ -12,11 +12,12 @@ import {
   CLabel,
   CInput,
   CAlert,
-  CSelect
+  CSelect,
+  CTextarea
 } from '@coreui/react'
 import axios from "axios";
 
-const PartnerDetail = () => {
+const StandardForm = () => {
   
   const history = useHistory()
   
@@ -28,18 +29,19 @@ const PartnerDetail = () => {
     event.preventDefault();
     inserting = true;
 
-    const partner = {
-      companyName: event.target.companyName.value,
-      cnpj: event.target.cnpj.value,
-      state: event.target.state.value,
-      city: event.target.city.value
+    const standard = {
+      title: event.target.title.value,
+      code: event.target.code.value,
+      category: event.target.category.value,
+      keywords: event.target.keywords.value,
+      description: event.target.description.value
     };
 
     axios
-      .post("http://localhost:8080/v1/partners", partner)
+      .post(process.env.REACT_APP_STANDARD_HOST + "/v1/standards", standard)
       .then((res) => {
         inserting = false;
-        history.push('/partners')
+        history.push('/standards')
       })
       .catch((error) => {
         inserting = false;
@@ -53,75 +55,63 @@ const PartnerDetail = () => {
       <CCol>
         <CCard>
           <CCardHeader>
-            Inserir nova empresa
+            Inserir nova norma técnica
           </CCardHeader>
           <CCardBody>
             <CAlert color="danger" show={errorInsert} closeButton>
-              Erro ao inserir empresa, verifique os dados informados.
+              Erro ao inserir norma, verifique os dados informados.
             </CAlert>
             <CForm onSubmit={handleSubmit} className="form-horizontal">
               <CFormGroup row>
                 <CCol md="3" className="col-form-label">
-                  <CLabel htmlFor="companyName">Nome da empresa:</CLabel>
+                  <CLabel htmlFor="title">Título da norma:</CLabel>
                 </CCol>
                 <CCol xs="12" md="9">
-                  <CInput id="companyName" name="companyName" placeholder="Empresa" />                  
+                  <CInput id="title" name="title" placeholder="Título" />                  
                 </CCol>
               </CFormGroup>
 
               <CFormGroup row>
                 <CCol md="3" className="col-form-label">
-                  <CLabel htmlFor="cnpj">CNPJ:</CLabel>
+                  <CLabel htmlFor="code">Código:</CLabel>
                 </CCol>
                 <CCol xs="12" md="9">
-                  <CInput id="cnpj" name="cnpj" maxLength="14" placeholder="CNPJ" />                  
+                  <CInput id="code" name="code" maxLength="14" placeholder="Código" />                  
                 </CCol>
               </CFormGroup>
 
               <CFormGroup row>
                 <CCol md="3" className="col-form-label">
-                  <CLabel htmlFor="Estado">Estado:</CLabel>
+                  <CLabel htmlFor="category">Categoria:</CLabel>
                 </CCol>
                 <CCol xs="12" md="9">                  
-                  <CSelect custom id="state" name="state">
-                    <option>Selecione um estado</option>
-                    <option value="AC">Acre</option>
-                    <option value="AL">Alagoas</option>
-                    <option value="AP">Amapá</option>
-                    <option value="AM">Amazonas</option>
-                    <option value="BA">Bahia</option>
-                    <option value="CE">Ceará</option>
-                    <option value="DF">Distrito Federal</option>
-                    <option value="ES">Espírito Santo</option>
-                    <option value="GO">Goiás</option>
-                    <option value="MA">Maranhão</option>
-                    <option value="MT">Mato Grosso</option>
-                    <option value="MS">Mato Grosso do Sul</option>
-                    <option value="MG">Minas Gerais</option>
-                    <option value="PA">Pará</option>
-                    <option value="PB">Paraíba</option>
-                    <option value="PR">Paraná</option>
-                    <option value="PE">Pernambuco</option>
-                    <option value="PI">Piauí</option>
-                    <option value="RJ">Rio de Janeiro</option>
-                    <option value="RN">Rio Grande do Norte</option>
-                    <option value="RS">Rio Grande do Sul</option>
-                    <option value="RO">Rondônia</option>
-                    <option value="RR">Roraima</option>
-                    <option value="SC">Santa Catarina</option>
-                    <option value="SP">São Paulo</option>
-                    <option value="SE">Sergipe</option>
-                    <option value="TO">Tocantins</option>
-                    <option value="EX">Estrangeiro</option>
+                  <CSelect custom id="category" name="category">
+                    <option>Selecione uma categoria</option>
+                    <option value="AC">Informação e documentação</option>
+                    <option value="AL">Têxteis e do vestuário</option>
+                    <option value="AP">Segurança contra incêndio</option>
                   </CSelect>
                 </CCol>
               </CFormGroup>
               <CFormGroup row>
                 <CCol md="3" className="col-form-label">
-                  <CLabel htmlFor="cidade">Cidade:</CLabel>
+                  <CLabel htmlFor="keywords">Palavras-chaves:</CLabel>
                 </CCol>
                 <CCol xs="12" md="9">
-                  <CInput id="city" name="city" placeholder="Cidade" />                  
+                  <CInput id="keywords" name="keywords" placeholder="Palavras-chaves" />                  
+                </CCol>
+              </CFormGroup>
+              <CFormGroup row>
+                <CCol md="3" className="col-form-label">
+                  <CLabel htmlFor="description">Descrição</CLabel>
+                </CCol>
+                <CCol xs="12" md="9">
+                  <CTextarea 
+                    name="description" 
+                    id="description" 
+                    rows="9"
+                    placeholder="Explicação sobre a norma técnica..." 
+                  />
                 </CCol>
               </CFormGroup>
               <div className="text-right">
@@ -129,7 +119,7 @@ const PartnerDetail = () => {
                   type="submit"             
                   color="success"                  
                   className="mt-2">
-                  {"Inserir empresa"}{" "}{inserting ? (<i className="fa fa-spin fa-circle-o-notch" />) : null}
+                  {"Inserir norma"}{" "}{inserting ? (<i className="fa fa-spin fa-circle-o-notch" />) : null}
                 </CButton>
             </div>
             </CForm>            
@@ -140,4 +130,4 @@ const PartnerDetail = () => {
   )
 }
 
-export default PartnerDetail
+export default StandardForm

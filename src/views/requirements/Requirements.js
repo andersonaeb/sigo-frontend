@@ -22,7 +22,7 @@ const Requirements = () => {
 
   useEffect(() => {        
     axios
-      .get("http://localhost:8080/v1/requirements")
+      .get(process.env.REACT_APP_PARTNER_HOST + "/v1/requirements")
       .then((res) => {
         setRequirement(res.data.content);
       })

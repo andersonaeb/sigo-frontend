@@ -27,7 +27,7 @@ const PartnerDetail = ({match}) => {
   const remove = () => {
     excluding = true;
     axios
-      .delete("http://localhost:8080/v1/partners/" + match.params.id)
+      .delete(process.env.REACT_APP_PARTNER_HOST + "/v1/partners/" + match.params.id)
       .then((res) => {
         setModal(!modal);
         history.push('/partners')
@@ -39,7 +39,7 @@ const PartnerDetail = ({match}) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/v1/partners/" + match.params.id)
+      .get(process.env.REACT_APP_PARTNER_HOST + "/v1/partners/" + match.params.id)
       .then((res) => {
         setPartner(res.data);
       })

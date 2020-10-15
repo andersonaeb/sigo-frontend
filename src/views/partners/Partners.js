@@ -20,7 +20,7 @@ const Partners = () => {
   let currentPage = 1;
 
   useEffect(() => {    
-    const url = "http://localhost:8080/v1/partners";
+    const url = process.env.REACT_APP_PARTNER_HOST + "/v1/partners";
     axios
       .get(url)
       .then((res) => {

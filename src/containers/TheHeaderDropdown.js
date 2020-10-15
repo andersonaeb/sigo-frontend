@@ -35,9 +35,9 @@ const TheHeaderDropdown = () => {
         </div>
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
-        <CDropdownItem><i className="fa fa-wrench"></i> Configurações</CDropdownItem>              
+        <CDropdownItem><i className="fa fa-wrench"></i>&nbsp;&nbsp;Configurações</CDropdownItem>              
         <CDropdownItem divider />              
-        <CDropdownItem onClick={e => signOut(e)}><i className="fa fa-lock"></i> Sair</CDropdownItem>
+        <CDropdownItem onClick={e => signOut(e)}><i className="fa fa-lock"></i>&nbsp;&nbsp;Sair</CDropdownItem>
       </CDropdownMenu>
     </CDropdown>
   )

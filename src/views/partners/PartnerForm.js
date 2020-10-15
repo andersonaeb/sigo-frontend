@@ -36,7 +36,7 @@ const PartnerForm = () => {
     };
 
     axios
-      .post("http://localhost:8080/v1/partners", partner)
+      .post(process.env.REACT_APP_PARTNER_HOST + "/v1/partners", partner)
       .then((res) => {
         inserting = false;
         history.push('/partners')

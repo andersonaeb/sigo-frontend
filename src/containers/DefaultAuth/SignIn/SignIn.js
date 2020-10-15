@@ -79,7 +79,7 @@ class DefaultSignIn extends SignIn {
         />
         <CContainer>
           <CRow className="justify-content-center row">
-            <CCol md="8">
+            <CCol md="5">
               <CCardGroup>
                 <CCard className="p-4">
                   <CCardBody>

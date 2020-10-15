@@ -37,7 +37,7 @@ const RequirementForm = () => {
     };
 
     axios
-      .post("http://localhost:8080/v1/requirements", requirement)
+      .post(process.env.REACT_APP_PARTNER_HOST + "/v1/requirements", requirement)
       .then((res) => {
         inserting = false;
         history.push('/requirements')
