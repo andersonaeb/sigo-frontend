@@ -57,23 +57,23 @@ const PartnerDetail = ({match}) => {
             ID da empresa: {match.params.id}
           </CCardHeader>
           <CCardBody>
-              <table className="table table-striped table-hover">
+              <table className="table table-striped">
                 <tbody>
                   <tr>
                     <td>Nome da empresa</td>
-                    <td><strong>{partner.companyName}</strong></td>
+                    <td>{partner.companyName}</td>
                   </tr>
                   <tr>
                     <td>CNPJ</td>
-                    <td><strong>{partner.cnpj}</strong></td>
+                    <td>{partner.cnpj}</td>
                   </tr>
                   <tr>
                     <td>Estado</td>
-                    <td><strong>{partner.state}</strong></td>
+                    <td>{partner.state}</td>
                   </tr>
                   <tr>
                     <td>Cidade</td>
-                    <td><strong>{partner.city}</strong></td>
+                    <td>{partner.city}</td>
                   </tr>
                 </tbody>
               </table>

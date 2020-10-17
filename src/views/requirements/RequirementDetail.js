@@ -85,15 +85,15 @@ const RequirementDetail = ({match}) => {
             ID do requerimento: {match.params.id}
           </CCardHeader>
           <CCardBody>
-              <table className="table table-striped table-hover">
+              <table className="table table-striped">
                 <tbody>
                   <tr>
                     <td>Título</td>
-                    <td><strong>{requirement.title}</strong></td>
+                    <td>{requirement.title}</td>
                   </tr>
                   <tr>
                     <td>Código da Norma Técnica</td>
-                    <td><strong>{requirement.standardCode}</strong></td>
+                    <td>{requirement.standardCode}</td>
                   </tr>
                   <tr>
                     <td>Status</td>
@@ -105,7 +105,7 @@ const RequirementDetail = ({match}) => {
                   </tr>                    
                   <tr>
                     <td>Validade do requerimento</td>
-                    <td><strong>{formatDate(requirement.validity)}</strong></td>
+                    <td>{formatDate(requirement.validity)}</td>
                   </tr>
                   <tr>
                     <td>Descrição</td>

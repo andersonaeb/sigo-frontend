@@ -3,7 +3,8 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import './scss/style.scss';
 
 // AWS Amplify
-import Amplify from 'aws-amplify';
+import { Auth } from 'aws-amplify';
+import axios from "axios";
 import { VerifyContact, withAuthenticator } from 'aws-amplify-react';
 import { DefaultConfirmSignIn, DefaultForgotPassword, DefaultSignIn, DefaultRequireNewPassword} from './containers/DefaultAuth'
 import aws_exports from './aws-exports';
@@ -17,7 +18,20 @@ const loading = (
 // Containers
 const TheLayout = React.lazy(() => import('./containers/TheLayout'));
 
-Amplify.configure(aws_exports);
+Auth.configure(aws_exports);
+
+// Async call to Cognito to check for token
+// This will be checked every time a protected route is loaded
+Auth.currentSession()
+    .then((response) => {        
+        axios.defaults.headers.common = {
+            Authorization: 'Bearer ' + response.idToken.jwtToken,
+        };
+
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 
 class App extends Component {
 

@@ -5,7 +5,7 @@ const TheFooter = () => {
   return (
     <CFooter fixed={false}>
       <div>        
-        <span className="ml-1">TCC Arquitetura de Software Distribuído</span>
+        <span className="ml-1">Arquitetura de Software Distribuído</span>
       </div>
       <div className="mfs-auto">
         <span className="mr-1">PUC Minas</span>        

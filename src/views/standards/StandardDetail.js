@@ -57,23 +57,23 @@ const StandardDetail = ({match}) => {
             ID da norma técnica: {match.params.id}
           </CCardHeader>
           <CCardBody>
-              <table className="table table-striped table-hover">
+              <table className="table table-striped">
                 <tbody>
                   <tr>
                     <td>Título</td>
-                    <td><strong>{standard.title}</strong></td>
+                    <td>{standard.title}</td>
                   </tr>
                   <tr>
                     <td>Código</td>
-                    <td><strong>{standard.code}</strong></td>
+                    <td>{standard.code}</td>
                   </tr>
                   <tr>
                     <td>Categoria</td>
-                    <td><strong>{standard.category}</strong></td>
+                    <td>{standard.category}</td>
                   </tr>
                   <tr>
                     <td>Palavras-chave</td>
-                    <td><strong>{standard.keywords}</strong></td>
+                    <td>{standard.keywords}</td>
                   </tr>
                   <tr>
                     <td>Descrição</td>

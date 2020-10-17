@@ -76,7 +76,7 @@ const StandardForm = () => {
                   <CLabel htmlFor="code">Código:</CLabel>
                 </CCol>
                 <CCol xs="12" md="9">
-                  <CInput id="code" name="code" maxLength="14" placeholder="Código" />                  
+                  <CInput id="code" name="code" placeholder="Código" />                  
                 </CCol>
               </CFormGroup>
 
@@ -87,9 +87,9 @@ const StandardForm = () => {
                 <CCol xs="12" md="9">                  
                   <CSelect custom id="category" name="category">
                     <option>Selecione uma categoria</option>
-                    <option value="AC">Informação e documentação</option>
-                    <option value="AL">Têxteis e do vestuário</option>
-                    <option value="AP">Segurança contra incêndio</option>
+                    <option value="Informação e documentação">Informação e documentação</option>
+                    <option value="Têxteis e do vestuário">Têxteis e do vestuário</option>
+                    <option value="Segurança contra incêndio">Segurança contra incêndio</option>
                   </CSelect>
                 </CCol>
               </CFormGroup>
