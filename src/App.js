@@ -23,15 +23,15 @@ Auth.configure(aws_exports);
 // Async call to Cognito to check for token
 // This will be checked every time a protected route is loaded
 Auth.currentSession()
-    .then((response) => {        
-        axios.defaults.headers.common = {
-            Authorization: 'Bearer ' + response.idToken.jwtToken,
-        };
+.then((response) => {        
+    axios.defaults.headers.common = {
+        Authorization: 'Bearer ' + response.idToken.jwtToken,
+    };
 
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+})
+.catch((error) => {
+    console.log(error);
+});
 
 class App extends Component {
 

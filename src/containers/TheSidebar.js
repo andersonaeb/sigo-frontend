@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Auth, nav } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 import { useSelector, useDispatch } from 'react-redux'
 import {
   CCreateElement,

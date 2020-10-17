@@ -19,14 +19,17 @@ const StandardDetail = React.lazy(() => import('./views/standards/StandardDetail
 
 const Processes = React.lazy(() => import('./views/processes/Processes'));
 
-const routes = [
+export const AdminRoutes = [
   { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-
-  
+  { path: '/dashboard', name: 'Dashboard', component: Dashboard },  
   { path: '/partners', exact: true, name: 'Consultorias e Assessorias', component: Partners },
   { path: '/partners/view/:id', name: 'Detalhes', component: PartnerDetail },
   { path: '/partners/insert', name: 'Inserir', component: PartnerForm },
+];
+
+export const PartnerRoutes = [
+  { path: '/', exact: true, name: 'Home' },
+  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
 
   { path: '/requirements', exact: true, name: 'Requerimentos', component: Requirements },
   { path: '/requirements/view/:id', name: 'Detalhes', component: RequirementDetail },
@@ -37,7 +40,11 @@ const routes = [
   { path: '/standards/insert', name: 'Inserir', component: StandardForm },
 
   { path: '/processes', name: 'Gestão do Processo Industrial', component: Processes }
-  
 ];
 
-export default routes;
+export const ManagerRoutes = [
+  { path: '/', exact: true, name: 'Home' },
+  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+
+  { path: '/processes', name: 'Gestão do Processo Industrial', component: Processes }
+];

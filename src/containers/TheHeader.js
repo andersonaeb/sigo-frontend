@@ -16,7 +16,7 @@ import {
 import CIcon from '@coreui/icons-react'
 
 // routes config
-import routes from '../routes'
+import { AdminRoutes, PartnerRoutes, ManagerRoutes } from '../routes'
 
 import logo from '../assets/img/brand/logo_black.png'
 
@@ -27,6 +27,7 @@ import {
 const TheHeader = () => {
   
   let [group, setGroup] = useState([]);
+  let [routes, setRoutes] = useState([]);  
 
   const dispatch = useDispatch()
   const sidebarShow = useSelector(state => state.sidebarShow)
@@ -42,16 +43,33 @@ const TheHeader = () => {
   }
 
   const getGroupName = (group) => {
-    if(group == 'manager') {
+    if(group === 'manager') {
       return 'Gestor';
-    } else if(group == 'partner') {
+    } else if(group === 'partner') {
       return 'Consultor';
     } else {
       return group;
     }
   }
 
-  Auth.currentAuthenticatedUser().then(user => setGroup(user.signInUserSession.accessToken.payload['cognito:groups'][0]));
+  Auth.currentAuthenticatedUser().then(user => {
+    
+    setGroup(user.signInUserSession.accessToken.payload['cognito:groups'][0])
+
+    switch(group) {
+      case 'admin':
+        setRoutes(AdminRoutes);
+        break;
+      case 'partner':
+        setRoutes(PartnerRoutes);
+        break;
+      case 'manager':
+        setRoutes(ManagerRoutes);
+        break;
+      default:
+    }
+
+  });
 
   return (
     <CHeader>

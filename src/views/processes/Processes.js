@@ -28,7 +28,7 @@ const Processes = () => {
 
     const url = process.env.REACT_APP_PROCESS_HOST + "/v1/processes";
     axios
-      .get(url)
+      .get(url, { crossDomain: false })
       .then((res) => {
         setProcesses(res.data.processes);
       })
