@@ -15,6 +15,8 @@ import {
 
 import CIcon from '@coreui/icons-react'
 
+import axios from "axios";
+
 // routes config
 import { AdminRoutes, PartnerRoutes, ManagerRoutes } from '../routes'
 
@@ -55,6 +57,10 @@ const TheHeader = () => {
   Auth.currentAuthenticatedUser().then(user => {
     
     setGroup(user.signInUserSession.accessToken.payload['cognito:groups'][0])
+
+    axios.defaults.headers.common = {
+      Authorization: 'Bearer ' + user.signInUserSession.accessToken.jwtToken,
+    };
 
     switch(group) {
       case 'admin':
